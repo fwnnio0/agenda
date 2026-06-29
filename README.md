@@ -48,7 +48,7 @@ Crear el archivo **runtime.txt** con la versión utilizada de python3.
 python3 -V > runtime.txt
 ````
 
-## 6. Instalar el micro-framework **we.py**
+## 6. Instalar el micro-framework **web.py**
 
 Instalar el micro-framework **web.py** en el ambiente virtual
 (virtual environment)
