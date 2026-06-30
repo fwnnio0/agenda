@@ -1,0 +1,9 @@
+import web
+import _sqlite3
+
+render = web.template.render('views', base='layout')
+
+class VerContacto:
+    def GET(self, id_contacto):
+        print(f"ID_CONTACTO: {id_contacto}")
+        return render.ver_contacto()

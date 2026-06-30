@@ -4,6 +4,7 @@ urls = (
     '/', 'controllers.index.Index',
     '/lista_contactos', 'controllers.lista_contactos.ListaContactos',
     '/insertar_contacto', 'controllers.insertar_contacto.InsertarContacto',
+    '/ver_contacto/(.*)', 'controllers.ver_contacto.VerContacto'
 )
 
 app = web.application(urls, globals())
