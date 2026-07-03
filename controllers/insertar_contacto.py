@@ -5,34 +5,39 @@ render = web.template.render('views', base='layout')
 
 class InsertarContacto:
 
-    def insertContacto(self, id_contacto:int):
+    def GET(self):
+        return render.insertar_contacto()
+
+    def POST(self):
+        datos = web.input(
+            nombre="",
+            primer_apellido="",
+            segundo_apellido="",
+            email="",
+            telefono=""
+        )
         try:
             conexion = sqlite3.connect("sql/agenda.sqlite")
-            conexion.row_factory = sqlite3.Row
             cursor = conexion.cursor()
-            query = "SELECT * FROM contactos WHERE id_contacto = ?"
-            cursor.execute(query,(id_contacto,))
-            resultado = cursor.fetchone()
-
-            contacto = {
-                "id_contacto":resultado[0],
-                "nombre":resultado[1],
-                "primer_apellido":resultado[2],
-                "segundo_apellido":resultado[3],
-                "email":resultado[4],
-                "telefono":resultado[5]
-            }
+            query = """
+                INSERT INTO contactos 
+                (nombre, primer_apellido, segundo_apellido, email, telefono) 
+                VALUES (?, ?, ?, ?, ?)
+            """
+            cursor.execute(query, (
+                datos.nombre,
+                datos.primer_apellido,
+                datos.segundo_apellido,
+                datos.email,
+                datos.telefono
+            ))
+            conexion.commit()
             conexion.close()
-            print(contacto)
-            return contacto
         except sqlite3.Error as error:
             print(f"ERROR 102: {error.args}")
-            return []
+            return "Error al guardar el contacto"
         except Exception as error:
             print(f"ERROR 103: {error.args}")
-            return []
+            return "Error inesperado"
 
-    def GET(self,id_contacto:int):
-        print(f"ID_CONTACTO: {id_contacto}")
-        contacto = self.buscarContacto(id_contacto)
-        return render.ver_contacto(contacto)
+        raise web.seeother('/lista_contactos')
