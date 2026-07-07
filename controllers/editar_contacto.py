@@ -36,3 +36,5 @@ class EditarContacto:
         print(f"ID_CONTACTO: {id_contacto}")
         contacto = self.cambiarContacto(id_contacto)
         return render.editar_contacto(contacto)
+    
+    
