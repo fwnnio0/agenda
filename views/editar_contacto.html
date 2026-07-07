@@ -3,10 +3,10 @@ $def with(contacto)
 
 <form method="POST">
 
-    <label>ID</label><br>
-    <input type="text" id="id_contacto" name="id" value="$contacto['id_contacto']" readonly><br>
+    <label for="id_contacto">ID</label><br>
+    <input type="text" id="id_contacto" name="id_contacto" value="$contacto['id_contacto']" readonly><br>
 
-    <label>Nombre:</label><br>
+    <label for="nombre">Nombre:</label><br>
     <input type="text" id="name" name="nombre" value="$contacto['nombre']"><br>
 
     <label>Primer Apellido:</label><br>
@@ -21,6 +21,6 @@ $def with(contacto)
     <label>Teléfono:</label><br>
     <input type="text" name="telefono" value="$contacto['telefono']"><br>
 <br>
-<button>Guardar</button>
 <a href="/lista_contactos"><button type="button">Regresar</button></a>
+<button name="editar">Editar</button>
 </form>
