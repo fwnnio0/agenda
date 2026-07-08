@@ -28,6 +28,7 @@ class EditarContacto:
             """
             cursor.execute(query,(nombre, primer_apellido, segundo_apellido, email, telefono, id_contacto))
             conexion.commit()
+            conexion.close()
             return True
         
         except sqlite3.Error as error:
@@ -70,16 +71,22 @@ class EditarContacto:
         return render.editar_contacto(contacto)
     
     def POST(self,id_contacto: int):
-        formulario = web.input()
-        contacto = {
-            "id_contacto":formulario['id_contacto'],
-            "nombre":formulario['nombre'],
-            "primer_apellido":formulario['primer_apellido'],
-            "segundo_apellido":formulario['segundo_apellido'],
-            "email":formulario['email'],
-            "telefono":formulario['telefono']
-        }
-        resultado = self.actualizarContacto(contacto)
-        raise web.seeother('/lista_contactos')
-    
-    
+        try:
+            formulario = web.input()
+            contacto = {
+                "id_contacto":formulario['id_contacto'],
+                "nombre":formulario['nombre'],
+                "primer_apellido":formulario['primer_apellido'],
+                "segundo_apellido":formulario['segundo_apellido'],
+                "email":formulario['email'],
+                "telefono":formulario['telefono']
+            }
+            resultado = self.actualizarContacto(contacto)
+        except KeyError as error:
+            print(f"ERROR 106: Falta campo en formulario {error.args}")
+        except Exception as error:
+            print(f"ERROR 107: {error.args}")
+
+        web.ctx.status = '303 See Other'
+        web.header('Location', '/lista_contactos')
+        return ''

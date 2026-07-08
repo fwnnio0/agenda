@@ -5,7 +5,7 @@ urls = (
     '/lista_contactos', 'controllers.lista_contactos.ListaContactos',
     '/insertar_contacto', 'controllers.insertar_contacto.InsertarContacto',
     '/ver_contacto/(.*)', 'controllers.ver_contacto.VerContacto',
-    '/borrar_contacto/(\d+)', 'controllers.borrar_contacto.BorrarContacto',
+    r'/borrar_contacto/(\d+)', 'controllers.borrar_contacto.BorrarContacto',
     '/editar_contacto/(.*)', 'controllers.editar_contacto.EditarContacto'
 )
 
