@@ -1,24 +1,28 @@
 $def with (contacto=None)
 <h1>NUEVO CONTACTO</h1>
-
-<form method="POST">
-
-    <label>Nombre:</label><br>
-    <input type="text" name="nombre" required><br><br>
-
-    <label>Primer Apellido:</label><br>
-    <input type="text" name="primer_apellido"><br><br>
-
-    <label>Segundo Apellido:</label><br>
-    <input type="text" name="segundo_apellido"><br><br>
-
-    <label>Email:</label><br>
-    <input type="email" name="email"><br><br>
-
-    <label>Teléfono:</label><br>
-    <input type="text" name="telefono" required><br><br>
-
-    <button type="submit">Guardar Contacto</button>
+$if contacto == {}:
+    <h1>UPS! No existe este contacto</h1>
     <a href="/lista_contactos"><button type="button">Regresar</button></a>
 
-</form>
+$else:
+    <form method="POST">
+
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre" required><br><br>
+
+        <label>Primer Apellido:</label><br>
+        <input type="text" name="primer_apellido"><br><br>
+
+        <label>Segundo Apellido:</label><br>
+        <input type="text" name="segundo_apellido"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email"><br><br>
+
+        <label>Teléfono:</label><br>
+        <input type="text" name="telefono" required><br><br>
+
+        <button type="submit">Guardar Contacto</button>
+        <a href="/lista_contactos"><button type="button">Regresar</button></a>
+
+    </form>

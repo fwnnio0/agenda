@@ -40,4 +40,6 @@ class InsertarContacto:
             print(f"ERROR 103: {error.args}")
             return "Error inesperado"
 
-        raise web.seeother('/lista_contactos')
+        web.ctx.status = '303 See Other'
+        web.header('Location', '/lista_contactos')
+        return ''

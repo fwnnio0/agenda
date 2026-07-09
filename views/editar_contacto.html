@@ -1,26 +1,31 @@
 $def with(contacto)
 <h1>EDITAR CONTACTO</h1>
 
-<form method="POST">
+$if contacto == {}:
+    <h1>UPS! No existe este contacto</h1>
+    <a href="/lista_contactos"><button type="button">Regresar</button></a>
 
-    <label for="id_contacto">ID</label><br>
-    <input type="text" id="id_contacto" name="id_contacto" value="$contacto['id_contacto']" readonly><br>
+$else:
+    <form method="POST">
 
-    <label for="nombre">Nombre:</label><br>
-    <input type="text" id="name" name="nombre" value="$contacto['nombre']"><br>
+        <label for="id_contacto">ID</label><br>
+        <input type="text" id="id_contacto" name="id_contacto" value="$contacto['id_contacto']" readonly><br>
 
-    <label>Primer Apellido:</label><br>
-    <input type="text" name="primer_apellido" value="$contacto['primer_apellido']"><br>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="name" name="nombre" value="$contacto['nombre']"><br>
 
-    <label>Segundo Apellido:</label><br>
-    <input type="text" name="segundo_apellido" value="$contacto['segundo_apellido']"><br>
+        <label>Primer Apellido:</label><br>
+        <input type="text" name="primer_apellido" value="$contacto['primer_apellido']"><br>
 
-    <label>Email:</label><br>
-    <input type="text" name="email" value="$contacto['email']"><br>
+        <label>Segundo Apellido:</label><br>
+        <input type="text" name="segundo_apellido" value="$contacto['segundo_apellido']"><br>
 
-    <label>Teléfono:</label><br>
-    <input type="text" name="telefono" value="$contacto['telefono']"><br>
-<br>
-<a href="/lista_contactos"><button type="button">Regresar</button></a>
-<button name="editar">Editar</button>
-</form>
+        <label>Email:</label><br>
+        <input type="text" name="email" value="$contacto['email']"><br>
+
+        <label>Teléfono:</label><br>
+        <input type="text" name="telefono" value="$contacto['telefono']"><br>
+    <br>
+    <a href="/lista_contactos"><button type="button">Regresar</button></a>
+    <button name="editar">Editar</button>
+    </form>

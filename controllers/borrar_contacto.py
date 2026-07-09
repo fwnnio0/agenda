@@ -26,10 +26,10 @@ class BorrarContacto:
             return contacto
         except sqlite3.Error as error:
             print(f"ERROR 102: {error.args}")
-            return []
+            return {}
         except Exception as error:
             print(f"ERROR 103: {error.args}")
-            return []
+            return {}
 
     def borrarContacto(self, id_contacto:int):
         try:
@@ -58,4 +58,7 @@ class BorrarContacto:
             print("Contacto borrado")
         else:
             print("Ocurrió un error al borrar el contacto")
-        raise web.seeother('/lista_contactos')
+
+        web.ctx.status = '303 See Other'
+        web.header('Location', '/lista_contactos')
+        return ''

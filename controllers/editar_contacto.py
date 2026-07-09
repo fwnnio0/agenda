@@ -26,7 +26,16 @@ class EditarContacto:
             telefono = ?
             WHERE id_contacto = ?;
             """
-            cursor.execute(query,(nombre, primer_apellido, segundo_apellido, email, telefono, id_contacto))
+
+            datos = (
+                nombre,
+                primer_apellido,
+                segundo_apellido,
+                email,
+                telefono,
+                id_contacto
+            )
+            cursor.execute(query, datos)
             conexion.commit()
             conexion.close()
             return True
@@ -60,10 +69,10 @@ class EditarContacto:
             return contacto
         except sqlite3.Error as error:
             print(f"ERROR 102: {error.args}")
-            return []
+            return {}
         except Exception as error:
             print(f"ERROR 103: {error.args}")
-            return []
+            return {}
 
     def GET(self,id_contacto:int):
         print(f"ID_CONTACTO: {id_contacto}")
